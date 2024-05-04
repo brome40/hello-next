@@ -1,25 +1,19 @@
 import React from 'react';
-import { readFile, writeFile } from '../utils/file-utils';
-
-const DATABASE_PATH = '/src/database.json';
+import HitCounter from '../components/HitCounter/HitCounter';
+import Censored from '../components/Censored/Censored';
 
 function Home() {
-
-  let { hits } = JSON.parse(
-    readFile(DATABASE_PATH)
-  );
-
-  hits += 1;
-
-  writeFile(
-    DATABASE_PATH,
-    JSON.stringify({ hits })
-  );
 
   return (
     <main>
       <h1>Welcome!</h1>
-      <p>You are visitor number {hits}.</p>
+      <p>
+        You are visitor number &nbsp;
+        <Censored>
+          <HitCounter/>
+        </Censored>
+        .
+      </p>
     </main>
   );
 }
